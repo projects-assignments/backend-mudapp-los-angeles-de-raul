@@ -29,8 +29,10 @@ export class UserService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async updateUser(userId: string, user: UpdateUserDto) {
+    // return `This action updates a #${id} user`;
+    const update = await this.userRepository.update({id: +userId}, user);
+    if(update) return {message: "updated ok"};
   }
 
   remove(id: number) {
