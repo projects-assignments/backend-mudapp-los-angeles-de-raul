@@ -12,7 +12,7 @@ export class UserService {
   ) {}
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   create(user: CreateUserDto) {
-    return this.userRepository.save(user)
+    return this.userRepository.save(user);
     //return 'This action adds a new user';
   }
 
@@ -31,11 +31,13 @@ export class UserService {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async updateUser(userId: string, user: UpdateUserDto) {
     // return `This action updates a #${id} user`;
-    const update = await this.userRepository.update({id: +userId}, user);
-    if(update) return {message: "updated ok"};
+    const update = await this.userRepository.update({ id: +userId }, user);
+    if (update) return { message: 'updated ok' };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async removeUser(userId: string) {
+    // return `This action removes a #${userId} user`;
+    const deleteUser = await this.userRepository.delete({ id: +userId });
+    if (deleteUser) return { message: 'removed' };
   }
 }

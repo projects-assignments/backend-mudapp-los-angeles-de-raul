@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  Put,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -13,7 +23,7 @@ export class UserController {
   }
 
   @Get()
-  findAll(@Query('limit')limit:string) {
+  findAll(@Query('limit') limit: string) {
     return this.userService.findAll(limit);
   }
 
@@ -27,8 +37,8 @@ export class UserController {
     return this.userService.updateUser(userId, user);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @Delete(':userId')
+  removeUser(@Param('userId') userId: string) {
+    return this.userService.removeUser(userId);
   }
 }
