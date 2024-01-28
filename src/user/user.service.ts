@@ -19,8 +19,9 @@ export class UserService {
     // return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findUser(userId: string) :Promise<User> {
+    return this.userRepository.findOneBy({id: +userId})
+    // return User;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
