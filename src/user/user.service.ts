@@ -11,8 +11,9 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  create(user: CreateUserDto) {
+    return this.userRepository.save(user)
+    //return 'This action adds a new user';
   }
 
   findAll(limit: string) {
