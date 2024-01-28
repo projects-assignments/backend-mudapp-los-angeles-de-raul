@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
+import { ProviderModule } from './provider/provider.module';
+import { Provider } from './provider/entities/provider.entity';
 
 @Module({
   imports: [
@@ -14,10 +16,11 @@ import { User } from './user/entities/user.entity';
       username: 'avnadmin',
       password: 'AVNS_BPY9-lEHtEAPx_j04Ck',
       database: 'mudapp2',
-      entities: [User],
+      entities: [User, Provider],
       synchronize: false,
     }),
-    UserModule
+    UserModule,
+    ProviderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

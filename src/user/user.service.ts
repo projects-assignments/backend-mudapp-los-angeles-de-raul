@@ -7,23 +7,27 @@ import { FindManyOptions, Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private userRepository:Repository<User>){}
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
 
-  findAll(limit:string) {
-    let options:FindManyOptions<User>;
-    if (limit) options={take:+limit}
-    return this.userRepository.find(options)
+  findAll(limit: string) {
+    let options: FindManyOptions<User>;
+    if (limit) options = { take: +limit };
+    return this.userRepository.find(options);
     // return `This action returns all user`;
   }
 
-  async findUser(userId: string) :Promise<User> {
-    return this.userRepository.findOneBy({id: +userId})
+  async findUser(userId: string): Promise<User> {
+    return this.userRepository.findOneBy({ id: +userId });
     // return User;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
