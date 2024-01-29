@@ -6,13 +6,13 @@ export class Provider {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   providerName: string;
 
   @Column()
   password: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -38,7 +38,7 @@ export class Provider {
 
   @Column()
   reviews: string;
-  
-  @OneToMany(()=> Ticket, (tickets: Ticket) => tickets.provider)
+
+  @OneToMany(() => Ticket, (ticket: Ticket) => ticket.provider)
   tickets: Ticket[];
 }
