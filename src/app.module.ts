@@ -7,6 +7,7 @@ import { User } from './user/entities/user.entity';
 import { ProviderModule } from './provider/provider.module';
 import { Provider } from './provider/entities/provider.entity';
 import { TicketModule } from './ticket/ticket.module';
+import { Ticket } from './ticket/entities/ticket.entity';
 
 @Module({
   imports: [
@@ -16,8 +17,8 @@ import { TicketModule } from './ticket/ticket.module';
       port: 22116,
       username: 'avnadmin',
       password: 'AVNS_BPY9-lEHtEAPx_j04Ck',
-      database: 'mudapp2',
-      entities: [User, Provider],
+      database: 'mudapp',
+      entities: [User, Provider, Ticket],
       synchronize: false,
     }),
     UserModule,

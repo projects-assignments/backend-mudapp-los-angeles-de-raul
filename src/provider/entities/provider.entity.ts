@@ -1,12 +1,25 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Ticket } from 'src/ticket/entities/ticket.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Provider {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({unique: true})
   providerName: string;
+
+  @Column()
+  password: string;
+
+  @Column({unique: true})
+  email: string;
+
+  @Column()
+  name: string;
+
+  @Column()
+  lastname: string;
 
   @Column()
   vehicle: string;
@@ -25,4 +38,7 @@ export class Provider {
 
   @Column()
   reviews: string;
+  
+  @OneToMany(()=> Ticket, (tickets: Ticket) => tickets.provider)
+  tickets: Ticket[];
 }
