@@ -1,5 +1,7 @@
+import { genSalt, hash } from 'bcrypt';
+import { log } from 'console';
 import { Ticket } from 'src/ticket/entities/ticket.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -17,6 +19,19 @@ export class User {
   lastname: string;
   @Column()
   role: string;
+  @BeforeInsert()
+  async hashPassword() { 
+    try{
+      const salt = await genSalt(10);
+      const hashedPassword = await hash(this.password, salt);
+      this.password = hashedPassword;
+      console.log(hashedPassword);
+      
+    } catch(error){
+      throw new Error ('Encripting password failed');
+    }
+  }
   @OneToMany(() => Ticket, (ticket: Ticket) => ticket.user)
   tickets: Ticket[];
 }
+

@@ -24,12 +24,19 @@ export class UserController {
 
   @Get()
   findAll(@Query('limit') limit: string) {
+    console.log('Holiiiii');
+    
     return this.userService.findAll(limit);
   }
 
-  @Get(':userId')
-  findUser(@Param('userId') userId: string) {
-    return this.userService.findUser(userId);
+  // @Get(':userId')
+  // findUser(@Param('userId') userId: string) {
+  //   return this.userService.findUser(+userId);
+  // }
+
+    @Get(':username')
+  findUser(@Param('username') username: string) {
+    return this.userService.findUser(username);
   }
 
   @Put(':userId')

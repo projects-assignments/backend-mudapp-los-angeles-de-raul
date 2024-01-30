@@ -8,6 +8,7 @@ import { ProviderModule } from './provider/provider.module';
 import { Provider } from './provider/entities/provider.entity';
 import { TicketModule } from './ticket/ticket.module';
 import { Ticket } from './ticket/entities/ticket.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Ticket } from './ticket/entities/ticket.entity';
     UserModule,
     ProviderModule,
     TicketModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

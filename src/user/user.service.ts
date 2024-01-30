@@ -23,8 +23,13 @@ export class UserService {
     // return `This action returns all user`;
   }
 
-  async findUser(userId: string): Promise<User> {
-    return this.userRepository.findOneBy({ id: +userId });
+  // async findUser(userId: number): Promise<User> {
+  //   return this.userRepository.findOneBy({ id: +userId });
+  //   // return User;
+  // }
+
+  async findUser(username: string): Promise<User> {
+    return this.userRepository.findOneBy({ username });
     // return User;
   }
 
