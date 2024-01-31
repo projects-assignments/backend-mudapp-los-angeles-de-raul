@@ -11,9 +11,10 @@ import { Provider } from 'src/provider/entities/provider.entity';
 export class TicketService {
   constructor(
     @InjectRepository(Ticket) private ticketRepository: Repository<Ticket>,
+    // @InjectRepository(Provider) private providerRepository: Repository<Provider>,
     @InjectDataSource()private dataSource:DataSource
     // @InjectRepository(User) private userRepository: Repository<User>,
-    // @InjectRepository(Provider) private providerRepository: Repository<Provider>,
+
   ) {}
   async newTransport(createTicketDto:CreateTicketDto){
     const queryRunner=this.dataSource.createQueryRunner()
@@ -50,5 +51,4 @@ export class TicketService {
   //   return `This action returns a #${id} ticket`;
   // }
 
- 
 }
