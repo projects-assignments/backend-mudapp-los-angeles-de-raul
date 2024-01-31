@@ -21,6 +21,8 @@ export class TicketService {
     await queryRunner.connect()
     await queryRunner.startTransaction()
     try{
+      console.log('This is the id from createTicketDto: ' + createTicketDto.provider.id);
+      
       const availableProvider= await queryRunner.manager.findOne(Provider, {
         where:{id:  createTicketDto.provider.id, availability:true},
       })
