@@ -21,11 +21,12 @@ export class TicketService {
     await queryRunner.connect()
     await queryRunner.startTransaction()
     try{
-      console.log('This is the id from createTicketDto: ' + createTicketDto.provider.id);
+      // console.log('This is the id from createTicketDto: ' + createTicketDto.provider.id);
       
       const availableProvider= await queryRunner.manager.findOne(Provider, {
         where:{id:  createTicketDto.provider.id, availability:true},
       })
+      console.log('This is the id from createTicketDto: ' + createTicketDto.provider.id);
       if(!availableProvider){
         throw new HttpException('No disponible',404);
       }
@@ -46,7 +47,7 @@ export class TicketService {
 
   async findAll(): Promise<Ticket[]> {
     // return `This action returns all ticket`;
-    return this.ticketRepository.find({ relations: ['user', 'provider'] });
+    return this.ticketRepository.find();
   }
 
   // findOne(id: number) {

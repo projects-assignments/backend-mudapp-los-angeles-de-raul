@@ -12,7 +12,7 @@ export class UserService {
   ) {}
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   create(user: CreateUserDto) {
-    return this.userRepository.save(user);
+    return this.userRepository.save(this.userRepository.create(user));
     //return 'This action adds a new user';
   }
 
