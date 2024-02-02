@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { genSalt, hash } from 'bcrypt';
 import { Ticket } from 'src/ticket/entities/ticket.entity';
 import {
@@ -29,21 +30,27 @@ export class Provider {
   lastname: string;
 
   @Column()
+  @ApiProperty({ example: 'Berlingo', description: 'The car brand' })
   vehicle: string;
 
   @Column()
+  @ApiProperty({ example: 'small', description: 'car size' })
   vehicleSize: string;
 
   @Column()
+  @ApiProperty({ example: 'Barcelona', description: 'provider location' })
   origin: string;
 
   @Column()
+  @ApiProperty({ example: 'Catalunya', description: 'Working area' })
   trip: string;
 
   @Column()
+  @ApiProperty({ example: 'available', description: 'provider availability' })
   availability: boolean;
 
   @Column()
+  @ApiProperty({ example: 'Excellent', description: 'provider rating' })
   reviews: string;
 
   @BeforeInsert()

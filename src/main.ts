@@ -10,10 +10,15 @@ async function bootstrap() {
     .setDescription('Mudapp API Description')
     .setVersion('1.0')
     .addTag('mudapp')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+    })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   await app.listen(3000);
 }
 bootstrap();
-
