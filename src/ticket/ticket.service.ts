@@ -4,8 +4,8 @@ import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { User } from 'src/user/entities/user.entity';
-import { Provider } from 'src/provider/entities/provider.entity';
+import { User } from '../user/entities/user.entity';
+import { Provider } from '../provider/entities/provider.entity';
 
 @Injectable()
 export class TicketService {

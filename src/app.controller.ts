@@ -20,7 +20,7 @@ export class AppController {
   @UseGuards(AuthGuard('local'))
   @Post('auth/signin')
   async signin(@Req() req: Request) {
-    console.log('holiiiii');
+    // console.log('holiiiii');
     
     return this.authService.signin(req.user as User); // Sustituir por el token del backend
   }

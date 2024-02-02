@@ -13,9 +13,9 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Role } from 'src/auth/constants/role.enum';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Role } from '../auth/constants/role.enum';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
@@ -29,8 +29,7 @@ export class UserController {
 
   @Get()
   @Roles(Role.Admin)
-  @UseGuards(RolesGuard)
-  @UseGuards(AuthGuard('Jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   findAll(@Query('limit') limit: string) {
     // console.log('Holiiiii');
     
