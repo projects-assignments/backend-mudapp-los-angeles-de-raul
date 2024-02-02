@@ -3,10 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Query,
+  Put,
 } from '@nestjs/common';
 import { ProviderService } from './provider.service';
 import { CreateProviderDto } from './dto/create-provider.dto';
@@ -31,16 +31,16 @@ export class ProviderController {
     return this.providerService.findProvider(providerId);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateProviderDto: UpdateProviderDto,
+  @Put(':providerId')
+  updateProvider(
+    @Param('providerId') providerId: number,
+    @Body() provider: UpdateProviderDto,
   ) {
-    return this.providerService.update(+id, updateProviderDto);
+    return this.providerService.updateProvider(providerId, provider);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.providerService.remove(+id);
+  @Delete(':providerId')
+  removeProvider(@Param('providerId') providerId: number) {
+    return this.providerService.removeProvider(providerId);
   }
 }

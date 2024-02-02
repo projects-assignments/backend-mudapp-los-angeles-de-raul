@@ -12,8 +12,10 @@ export class ProviderService {
     @InjectRepository(Provider)
     private providerRepository: Repository<Provider>,
   ) {}
-  create(createProviderDto: CreateProviderDto) {
-    return 'This action adds a new provider';
+  create(provider: CreateProviderDto) {
+    return this.providerRepository.save(
+      this.providerRepository.create(provider),
+    );
   }
 
   findAll(limit: string) {
@@ -28,11 +30,20 @@ export class ProviderService {
     return this.providerRepository.findOneBy({ id: +providerId });
   }
 
-  update(id: number, updateProviderDto: UpdateProviderDto) {
-    return `This action updates a #${id} provider`;
+  async updateProvider(providerId: number, provider: UpdateProviderDto) {
+    const update = await this.providerRepository.update(
+      { id: providerId },
+      provider,
+    );
+    if (update) {
+      return { message: 'provider updated' };
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} provider`;
+  async removeProvider(providerId: number) {
+    const deleteProvider = await this.providerRepository.delete({
+      id: providerId,
+    });
+    if (deleteProvider) return { message: 'provider removed' };
   }
 }
