@@ -1,5 +1,5 @@
 import { genSalt, hash } from 'bcrypt';
-import { Ticket } from '../ticket/entities/ticket.entity';
+import { Ticket } from 'src/ticket/entities/ticket.entity';
 import {
   Entity,
   Column,

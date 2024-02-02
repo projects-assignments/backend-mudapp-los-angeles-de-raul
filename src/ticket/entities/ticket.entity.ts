@@ -1,5 +1,5 @@
-import { Provider } from '../provider/entities/provider.entity';
-import { User } from '../user/entities/user.entity';
+import { Provider } from 'src/provider/entities/provider.entity';
+import { User } from 'src/user/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Ticket {

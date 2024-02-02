@@ -1,7 +1,7 @@
 import { genSalt, hash } from 'bcrypt';
 import { log } from 'console';
-import { Role } from '../auth/constants/role.enum';
-import { Ticket } from '../ticket/entities/ticket.entity';
+import { Role } from 'src/auth/constants/role.enum';
+import { Ticket } from 'src/ticket/entities/ticket.entity';
 import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
