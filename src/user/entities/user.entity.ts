@@ -1,5 +1,6 @@
 import { genSalt, hash } from 'bcrypt';
 import { log } from 'console';
+import { Role } from 'src/auth/constants/role.enum';
 import { Ticket } from 'src/ticket/entities/ticket.entity';
 import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -18,7 +19,8 @@ export class User {
   @Column()
   lastname: string;
   @Column()
-  role: string;
+  // role: string; //Debe estructurarse como un array: role: []
+  role: Role[];
   @BeforeInsert()
   async hashPassword() { 
     try{
