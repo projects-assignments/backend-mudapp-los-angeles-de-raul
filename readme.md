@@ -8,18 +8,20 @@ El desarrollo de la misma se ha llevado a cabo con el framework de NestJS, conec
 
 Aseguramos su funcionalidad mediante testing con Jest, como también documentamos su funcionalidad con Swagger, que a su vez nos permite probar esta plataforma.
 
-## Lab Goals
+## Herramientas y plataformas utilizadas
 
-- Use the Nest CLI to create application components
-- Work with controllers and services
-- Create the basic CRUD methods of an application
-- Capture HTTP requests parameters
-- Use ORM entities (Object Relational Mappers), interfaces and DTOs (Data Transfer Objects)
-- Create a simple API with mocked data
-- Create database-based services
-- Use JWT as an access control mechanism
-- Use Swagger for API documentation
-- Record operations the application in log files
+- Visual Studio Code.
+- MySQL Workbench.
+- Aiven (Cloud MySQL).
+- Render para despliegue online.
+- NodeJS.
+- NestJS.
+- TypeScript.
+- TypeORM.
+- Jira.
+- Canva.
+- Slack.
+- Discord/Zoom.
 
 ## Modelo lógico de la base de datos
 ![library-model](https://imgur.com/STMsrbz.jpg)
@@ -56,11 +58,12 @@ Una vez en ejecución, podremos acceder a [Swagger](http://localhost:3000/api) p
 La base de datos en la que realizaremos el CRUD (Create, Read, Update, Delete) se encuentra alojada en la nube, por lo que no es necesario instalarla.
 
 ### Para acceder al despliegue online
-Disponible [aquí]().
+Disponible [aquí](https://backend-mudapp.onrender.com/).
+Recordar que aún así será necesario ejecutar las peticiones desde [Postman](https://www.postman.com/downloads/) o [Swagger](https://backend-mudapp.onrender.com/api) para comprobar su funcionamiento.
 
 ## Recursos
 [Diagrama de MySQL Workbench](https://github.com/projects-assignments/backend-mudapp-los-angeles-de-raul/blob/main/diagramabbdd.mwb)
 
 [Fichero dump de la base de datos](https://github.com/projects-assignments/backend-mudapp-los-angeles-de-raul/blob/main/dump.sql)
 
-[Presentación]()
+[Presentación](https://www.canva.com/design/DAF7jhLY-iE/c4Bc9Jow3FGs--cYQxJ_zw/edit?utm_content=DAF7jhLY-iE)
