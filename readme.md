@@ -6,7 +6,7 @@ Nuestra aplicación se basa en un sistema de mudanzas inspirado en el funcionami
 
 El desarrollo de la misma se ha llevado a cabo con el framework de NestJS, conectándola con nuestra base de datos MySQL a través de TypeORM.
 
-Aseguramos su funcionalidad mediante testing con Jest, como también documentamos su funcionalidad con Swagger, que a su vez nos permite probar esta plataforma.
+Documentamos su funcionalidad con Swagger, que a su vez nos permite probar esta plataforma.
 
 ## Herramientas y plataformas utilizadas
 
