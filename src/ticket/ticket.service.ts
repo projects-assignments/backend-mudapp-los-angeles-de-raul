@@ -50,8 +50,19 @@ export class TicketService {
     return this.ticketRepository.find();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} ticket`;
-  // }
+  async findTicket(orderId: string): Promise<Ticket> {
+    return this.ticketRepository.findOneBy({ orderId: +orderId });
+  }
 
+  async removeTicket(orderId: number) {
+    const deleteTicket = await this.ticketRepository.delete({ orderId: orderId});
+    if (deleteTicket) return { message: 'ticket removed' }
+  }
+
+  async updateTicket(orderId: number, ticket: UpdateTicketDto) {
+    const update = await this.ticketRepository.update({ orderId: orderId}, ticket);
+    if (update) {
+      return { message: 'ticket updated' };
+    }
+  }
 }

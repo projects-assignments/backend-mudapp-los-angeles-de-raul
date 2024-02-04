@@ -7,6 +7,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { TicketService } from './ticket.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
@@ -19,7 +20,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 
-@ApiBearerAuth()
+// @ApiBearerAuth()
 @ApiTags('ticket')
 @Controller('ticket')
 export class TicketController {
@@ -38,4 +39,28 @@ export class TicketController {
   findAll() {
     return this.ticketService.findAll();
   }
+
+  @Get(':orderId')
+  @ApiOperation({ summary: 'one ticket found' })
+  @ApiResponse({ status: 404, description: 'forbidden' })
+  findTicket(@Param('orderId')orderId: string) {
+    return this.ticketService.findTicket(orderId)
+  }
+
+  @Delete(':orderId')
+  @ApiOperation({ summary: 'one ticket deleted' })
+  @ApiResponse({ status: 404, description: 'forbidden' })
+  removeTicket(@Param('orderId') orderId: number) {
+    return this.ticketService.removeTicket(orderId)
+  }
+
+  @Put(':orderId')
+  @ApiOperation({ summary: 'one ticket updated' })
+  @ApiResponse({ status: 404, description: 'forbidden' })
+  updateTicket(
+    @Param('orderId') orderId: number,
+    @Body() ticket: UpdateTicketDto,
+    ) {
+      return this.ticketService.updateTicket(orderId, ticket)
+    }
 }
