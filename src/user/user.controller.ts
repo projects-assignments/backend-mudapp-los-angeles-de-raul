@@ -63,7 +63,7 @@ export class UserController {
 
   @Put(':userId')
   @ApiOperation({ summary: 'update user' })
-  updateUser(@Param('userId') userId: string, @Body() user: UpdateUserDto) {
+  updateUser(@Param('userId') userId: number, @Body() user: UpdateUserDto) {
     return this.userService.updateUser(userId, user);
   }
 
