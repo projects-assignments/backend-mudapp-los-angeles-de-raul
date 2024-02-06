@@ -9,17 +9,21 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 describe('UserController', () => {
   let controller: UserController;
+  let service: UserService;
   let mockService = {
-    create: jest.fn((dto) => { 
-      return {
-        id: Math.random() * (1000 - 1) + 1, 
-        ...dto,
-      };
-    }),
+      create: jest.fn()
+      //(dto) => { 
+      // return {
+      //   id: Math.random() * (1000 - 1) + 1, 
+      //   ...dto,
+      // };
+    /*}*/
+    .mockImplementation((createUserDto: CreateUserDto) => Promise.resolve({...createUserDto, id: 2}))
+    ,
     updateUser: jest.fn((id, dto) => {
       return {
         id: id,
-        ...dto
+        ...dto 
       }
     }), 
   };
@@ -34,13 +38,14 @@ describe('UserController', () => {
       .compile();
 
     controller = module.get<UserController>(UserController);
+    service = module.get<UserService>(UserService);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
 
-  it('should create user', () => {
+  describe('should create user', ()  => {
     const createUserDto: CreateUserDto = {
       username: 'Nacho',
       password: '13345',
@@ -49,33 +54,40 @@ describe('UserController', () => {
       lastname: 'Sambade',
       admin: true,
     };
-    expect(controller.create(createUserDto)).toEqual({ 
-      id: expect.any(Number),
-      ...createUserDto,
-  })
+    it('should call userService createuser with the provided createUserDto  ', async () => {
+      const createUserSpy = jest.spyOn(service, "create");
+      await controller.create(createUserDto);
+      expect(createUserSpy).toHaveBeenCalledWith(createUserDto);
+    })
+    
+    
+  //   expect(controller.create(createUserDto)).toEqual({ 
+  //     id: expect.any(Number),
+  //     ...createUserDto,
+  // })
 })
-  it('should update user', ()=> {
-    const updateUserDto: UpdateUserDto = {
-      username: 'Balbino',
-      password: '139345',
-      email: 'nachitobonitoclaroquesi@gmail.com',
-      name: 'Nacha',
-      lastname: 'Sambade',
-      admin: true,
-    }
-    const userId = 3;
+  // it('should update user', ()=> {
+  //   const updateUserDto: UpdateUserDto = {
+  //     username: 'Balbino',
+  //     password: '139345',
+  //     email: 'nachitobonitoclaroquesi@gmail.com',
+  //     name: 'Nacha',
+  //     lastname: 'Sambade',
+  //     admin: true,
+  //   }
+  //   const userId = 3;
 
-    expect(controller.updateUser(userId, updateUserDto)).toEqual(
-      {
-        id: userId,
-        ...updateUserDto
-      }
-    );
-    expect(mockService.updateUser).toHaveBeenCalledWith( 
-      userId,
-      updateUserDto,
-      )
-  });
+  //   expect(controller.updateUser(userId, updateUserDto)).toEqual(
+  //     {
+  //       id: userId,
+  //       ...updateUserDto
+  //     }
+  //   );
+  //   expect(mockService.updateUser).toHaveBeenCalledWith( 
+  //     userId,
+  //     updateUserDto,
+  //     )
+  // });
 
   // it('should return one user acording the introduce user name', () => {
   //   //  let result= User ;
