@@ -7,6 +7,15 @@ import { FindOneOptions } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+const findUser: User = {
+  username: 'Nacho',
+  password: '13345',
+  email: 'nachitobonito@gmail.com',
+  name: 'Nachito',
+  lastname: 'Sambade',
+  admin: true,
+};
+
 describe('UserController', () => {
   let controller: UserController;
   let service: UserService;
@@ -25,7 +34,9 @@ describe('UserController', () => {
         id: id,
         ...dto 
       }
-    }), 
+    }),
+    findUser: jest.fn()
+    .mockImplementation((username: string) => Promise.resolve(findUser.find((user: User) => user.username === username))) 
   };
 
   beforeEach(async () => {
@@ -89,21 +100,18 @@ describe('UserController', () => {
   //     )
   // });
 
-  // it('should return one user acording the introduce user name', () => {
-  //   //  let result= User ;
-  //   let result: User = {
-  //     username: 'Nacho',
-  //     password: '13345',
-  //     email: 'nachitobonito@gmail.com',
-  //     name: 'Nachito',
-  //     lastname: 'Sambade',
-  //     admin: true,
-  //   };
+  describe('should find one user', () => {
+    
+    it('should return one user acording the introduce user name', async ()=>{
+      const userName = "Isiah";
+      const findUserSpy = jest.spyOn(service, 'findUser');
+      await controller.findUser(userName)
+      expect(findUserSpy).toHaveBeenCalledWith(userName)    
+    })
+    // jest.spyOn(service, 'findUser').mockImplementation(() => {});
 
-  //   jest.spyOn(service, 'findUser').mockImplementation(() => {});
-
-  //   expect(controller.findUser('username')).toBe(result);
-  // });
+    // expect(controller.findUser('username')).toBe(result);
+  });
 
   
 });
